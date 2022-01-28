@@ -4,7 +4,8 @@ import Filter from "./Filter";
 import Item from "./Item";
 
 
-function ShoppingList({ items }) {
+
+function ShoppingList({ items, handleNewItems }) {
   const [selectedCategory, setSelectedCategory] = useState("All");
   const [search, setSearchTerm] = useState("")
   const [addedItem, setAddedItem] = useState({
@@ -38,12 +39,7 @@ function ShoppingList({ items }) {
     return item.name.includes(search)
   })
 
-  function handleItemFormSubmit(event) {
-    event.preventDefault()
 
-
-
-  }
 
 
   const itemsToDisplay = filteredItemsToDisplay.filter((item) => {
@@ -59,7 +55,7 @@ function ShoppingList({ items }) {
         itemCategory={addedItem.itemCategory}
         onItemChange={handleItemNameChange}
         onItemCategoryChange={handleItemCategoryChange}
-        onItemFormSubmit={handleItemFormSubmit} />
+        onItemFormSubmit={handleNewItems} />
       <Filter onCategoryChange={handleCategoryChange} search={search} onSearchChange={handleSearchChange} />
       <ul className="Items">
         {itemsToDisplay.map((item) => (
