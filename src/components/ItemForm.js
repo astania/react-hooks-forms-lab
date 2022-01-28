@@ -2,19 +2,20 @@ import React, { useState } from "react";
 import { v4 as uuid } from "uuid";
 
 
-function ItemForm({ onItemFormSubmit }) {
+function ItemForm({ items, setItems }) {
   const [itemName, setItemName] = useState("")
   const [itemCategory, setItemCategory] = useState("Produce")
 
-  // function handleNewItem(event) {
-  //   event.preventDefault()
-  //   const newItem = {
-  //     id: uuid(),
-  //     name: itemName,
-  //     category: itemCategory,
-  //   }
+  function onItemFormSubmit(event) {
+    event.preventDefault()
+    const newItem = {
+      id: uuid(),
+      name: itemName,
+      category: itemCategory,
+    }
+    setItems([...items, newItem])
 
-  // }
+  }
 
   function handleItemNameChange(event) {
     setItemName(event.target.value)
